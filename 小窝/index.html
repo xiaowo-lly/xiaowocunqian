@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-CN"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="theme-color" content="#2c2b26"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="apple-mobile-web-app-title" content="小窝"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="manifest" href="manifest.json"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="apple-touch-icon" href="icon-192.png"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;小窝 · 砌砖存钱&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>/* 你原来的样式全部保留，这里省略，直接复制你之前那份 */</p>
+<p class="p1"><span class="Apple-converted-space">    </span>* { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body { background: #f0f2e9; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 12px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.app-container { width: 100%; max-width: 380px; background: #fefcf5; border-radius: 38px; box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06); padding: 20px 18px 26px; border: 1px solid #e9e5d8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.status-bar { display: flex; justify-content: space-between; font-size: 12px; color: #7e7a6e; margin-bottom: 16px; padding: 0 4px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-hero { background: #e6e9dc; border-radius: 32px; padding: 18px 14px 16px; margin-bottom: 18px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); position: relative; overflow: hidden; transition: all 0.2s; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-hero.stopped { background: #f3ede0; box-shadow: inset 0 0 0 2px #d9c7a8; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-svg { width: 100%; max-width: 180px; height: auto; display: block; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.08)); transition: transform 0.3s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-label { font-size: 13px; font-weight: 500; color: #5c5a4e; margin-top: 6px; background: rgba(255,255,255,0.6); padding: 4px 12px; border-radius: 40px; backdrop-filter: blur(4px); letter-spacing: 0.3px; transition: all 0.2s; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.house-label.warning { background: #ffe6d5; color: #b85e2e; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.neighbor-badge { display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); border-radius: 24px; padding: 10px 6px; width: 74px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.neighbor-label { font-size: 10px; color: #6b6a60; margin-bottom: 4px; letter-spacing: 0.2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.neighbor-house-mini { width: 50px; height: 50px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.neighbor-status { font-size: 10px; margin-top: 4px; color: #5a8f5a; background: #e2f0da; padding: 2px 8px; border-radius: 30px; font-weight: 500; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.neighbor-status.missed { color: #b85e2e; background: #ffe1d1; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.budget-card { background: #ffffff; border-radius: 28px; padding: 16px 18px; margin-bottom: 16px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02); border: 1px solid #efede6; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.today-spend { display: flex; justify-content: space-between; align-items: baseline; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.today-spend .label { font-size: 14px; color: #8b897e; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.today-spend .amount { font-size: 32px; font-weight: 700; color: #2c2b26; letter-spacing: -0.5px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.today-spend .amount.warning { color: #c25b2c; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 13px; color: #6b6a60; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-bar-bg { flex: 1; height: 6px; background: #ece8dd; border-radius: 20px; margin: 0 10px; overflow: hidden; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.progress-bar-fill { height: 100%; width: 30%; background: #8fbb7a; border-radius: 20px; transition: width 0.3s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.streak-badge { display: flex; align-items: center; gap: 4px; background: #fef2e0; padding: 6px 12px; border-radius: 40px; font-size: 13px; font-weight: 500; color: #b85e2e; margin-top: 12px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.streak-badge span { font-size: 16px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.action-row { display: flex; gap: 10px; margin-bottom: 18px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.action-btn { flex: 1; background: #ffffff; border: 1px solid #e3dfd3; border-radius: 40px; padding: 14px 0; font-size: 16px; font-weight: 500; color: #4f4e46; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: all 0.1s; cursor: pointer; user-select: none; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.action-btn.primary { background: #2c2b26; border-color: #2c2b26; color: white; box-shadow: 0 6px 12px rgba(0,0,0,0.08); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.action-btn:active { transform: scale(0.96); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.memory-card { display: flex; align-items: center; gap: 12px; background: #f7f5ef; border-radius: 26px; padding: 14px 16px; margin-bottom: 16px; border: 1px solid #e9e3d6; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.memory-icon { font-size: 28px; background: #fff; width: 48px; height: 48px; border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.memory-text h4 { font-size: 15px; font-weight: 600; color: #2c2b26; margin-bottom: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.memory-text p { font-size: 13px; color: #8b897e; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.stage-section { display: flex; justify-content: space-between; align-items: center; background: #ffffff; border-radius: 24px; padding: 12px 16px; margin-bottom: 16px; border: 1px solid #efede6; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.stage-info { display: flex; align-items: center; gap: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.stage-badge { background: #e4e0d2; color: #5c5a4e; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 40px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.stage-boss { font-size: 13px; color: #6b6a60; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.stage-boss strong { color: #b85e2e; font-weight: 600; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.remedy-preview { background: #ffffff; border-radius: 26px; padding: 16px 18px; border: 1px dashed #d9cfb8; margin-bottom: 8px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.remedy-title { font-size: 14px; font-weight: 600; color: #3a3a34; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.remedy-options { display: flex; gap: 8px; flex-wrap: wrap; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.remedy-option { flex: 1; min-width: 100px; background: #f3f0e8; border-radius: 20px; padding: 10px 8px; font-size: 12px; text-align: center; color: #4f4e46; font-weight: 500; border: 1px solid #e3dfd3; cursor: pointer; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.remedy-option:active { background: #e8e3d7; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.remedy-option small { display: block; font-weight: 400; font-size: 11px; color: #8b897e; margin-top: 4px; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.footnote { text-align: center; font-size: 11px; color: #b1aa9a; margin-top: 18px; letter-spacing: 0.2px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="app-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="status-bar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span id="clock"&gt;9:41&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span&gt;📶 🔋&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="house-hero" id="houseHero"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="house-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="house-main"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;svg class="house-svg" viewBox="0 0 200 170" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="30" y="125" width="140" height="18" rx="4" fill="#b7a98b" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="45" y="70" width="110" height="58" rx="6" fill="#e8d9c0" stroke="#cbb99b" stroke-width="2" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;path d="M30 70 L100 25 L170 70" fill="#b85e2e" fill-opacity="0.8" stroke="#a04e26" stroke-width="2" stroke-linejoin="round" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="125" y="38" width="16" height="28" rx="4" fill="#a5835c" stroke="#8a6b4b" stroke-width="1.5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="82" y="95" width="32" height="33" rx="6" fill="#b99b7a" stroke="#a07f5c" stroke-width="1.5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;circle cx="108" cy="113" r="3" fill="#f0e2d0" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="52" y="82" width="24" height="22" rx="4" fill="#a8d0e6" stroke="#7aa5bb" stroke-width="1.5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="124" y="82" width="24" height="22" rx="4" fill="#a8d0e6" stroke="#7aa5bb" stroke-width="1.5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;circle cx="60" cy="135" r="3" fill="#dbbd97" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;circle cx="90" cy="138" r="4" fill="#dbbd97" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;circle cx="140" cy="132" r="3" fill="#dbbd97" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="house-label" id="myHouseLabel"&gt;🏗️ 砌墙中 · 0%&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="neighbor-badge"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="neighbor-label"&gt;邻居&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;svg class="neighbor-house-mini" viewBox="0 0 60 60" fill="none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="10" y="36" width="40" height="12" rx="2" fill="#b7a98b" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="15" y="20" width="30" height="18" rx="3" fill="#e8d9c0" stroke="#cbb99b" stroke-width="1.5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;path d="M8 20 L30 6 L52 20" fill="#b85e2e" fill-opacity="0.8" stroke="#a04e26" stroke-width="1.5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="24" y="30" width="12" height="10" rx="2" fill="#b99b7a" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="17" y="24" width="8" height="8" rx="2" fill="#a8d0e6" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;rect x="35" y="24" width="8" height="8" rx="2" fill="#a8d0e6" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="neighbor-status" id="neighborStatus"&gt;✅ 今日已存&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="budget-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="today-spend"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="label"&gt;今天还能花&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="amount" id="todayAmount"&gt;¥79&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="progress-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span id="savedLabel"&gt;已存 ¥0&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="progress-bar-bg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="progress-bar-fill" id="progressFill" style="width: 0%;"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span id="goalLabel"&gt;目标 ¥5000&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="streak-badge"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;🔥&lt;/span&gt; 连续存钱 &lt;span id="streakDays"&gt;0&lt;/span&gt; 天</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="action-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="action-btn" id="recordBtn"&gt;📝 记一笔&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="action-btn primary" id="saveBtn"&gt;💰 存钱&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="memory-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="memory-icon"&gt;📬&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="memory-text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h4 id="memoryTitle"&gt;门口的信箱&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="memoryDesc"&gt;你拥有了第一笔应急金 · 1000元&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="stage-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="stage-info"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="stage-badge" id="stageBadge"&gt;第1关 / 共4关&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="stage-boss"&gt;BOSS: &lt;strong id="bossName"&gt;连续7天不超支&lt;/strong&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;span style="font-size:18px;"&gt;🏗️&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="remedy-preview"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="remedy-title"&gt;⚠️ 工地缺料了，怎么办？&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="remedy-options"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="remedy-option" data-remedy="A"&gt;明天少花41元&lt;small&gt;多运一车砖&lt;/small&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="remedy-option" data-remedy="B"&gt;从存款扣41元&lt;small&gt;拆掉一面墙&lt;/small&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="remedy-option" data-remedy="C"&gt;走路上班&lt;small&gt;自己动手搬砖&lt;/small&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="footnote"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>🧱 每存一笔，房子就长一点 · 和邻居一起盖</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 配置 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const GOAL = 5000;<span class="Apple-converted-space">              </span>// 目标金额</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const MONTHLY_BUDGET = 2370;<span class="Apple-converted-space">    </span>// 每月可花</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const DAILY_BUDGET = 79;<span class="Apple-converted-space">        </span>// 每日额度</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const STAGES = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ target: 500, name: '打地基', boss: '连续7天不超支' },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ target: 1500, name: '砌墙', boss: '这周不点外卖' },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ target: 3000, name: '盖屋顶', boss: '连续14天存钱' },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{ target: 5000, name: '完工', boss: '无' }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 数据层 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const store = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>get(key, fallback) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const v = localStorage.getItem('xiaowo_' + key);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return v === null ? fallback : JSON.parse(v);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>set(key, value) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>localStorage.setItem('xiaowo_' + key, JSON.stringify(value));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let state = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saved: store.get('saved', 0),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>streak: store.get('streak', 0),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>lastSaveDate: store.get('lastSaveDate', null),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>todaySpent: store.get('todaySpent', 0),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>todayDate: store.get('todayDate', new Date().toDateString()),</p>
+<p class="p1"><span class="Apple-converted-space">      </span>neighborSaved: store.get('neighborSaved', true)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 新的一天，重置今日花费</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const today = new Date().toDateString();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (state.todayDate !== today) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.todaySpent = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.todayDate = today;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>store.set('todaySpent', 0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>store.set('todayDate', today);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 渲染 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function render() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 今日还能花</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const remaining = Math.max(0, DAILY_BUDGET - state.todaySpent);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const amountEl = document.getElementById('todayAmount');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>amountEl.textContent = '¥' + remaining;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>amountEl.classList.toggle('warning', remaining &lt; 30);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 进度</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const percent = Math.min(100, (state.saved / GOAL) * 100);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('progressFill').style.width = percent + '%';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('savedLabel').textContent = '已存 ¥' + state.saved;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('goalLabel').textContent = '目标 ¥' + GOAL;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 房子标签</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const label = document.getElementById('myHouseLabel');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let stageText = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (percent &lt; 10) stageText = '🧱 打地基';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else if (percent &lt; 30) stageText = '🧱 砌墙中';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else if (percent &lt; 60) stageText = '🏠 盖屋顶';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else if (percent &lt; 90) stageText = '🪟 装窗户';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else if (percent &lt; 100) stageText = '🛋️ 布置家';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>else stageText = '✨ 完工亮灯';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>label.textContent = stageText + ' · ' + Math.round(percent) + '%';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// streak</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('streakDays').textContent = state.streak;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 邻居状态</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const neighborEl = document.getElementById('neighborStatus');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.neighborSaved) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>neighborEl.textContent = '✅ 今日已存';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>neighborEl.classList.remove('missed');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>neighborEl.textContent = '❌ 今日未存';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>neighborEl.classList.add('missed');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 当前阶段</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let currentStage = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; STAGES.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (state.saved &lt; STAGES[i].target) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentStage = i;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>break;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentStage = i;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const stage = STAGES[currentStage];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('stageBadge').textContent = `第${currentStage + 1}关 / 共${STAGES.length}关`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('bossName').textContent = stage.boss;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 成就墙</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const memoryTitle = document.getElementById('memoryTitle');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const memoryDesc = document.getElementById('memoryDesc');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.saved &gt;= 10000) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryTitle.textContent = '书房的台灯';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryDesc.textContent = '你超过了 70% 的同龄人';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (state.saved &gt;= 5000) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryTitle.textContent = '客厅的沙发';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryDesc.textContent = '你可以裸辞 1 个月';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (state.saved &gt;= 1000) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryTitle.textContent = '门口的信箱';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryDesc.textContent = '你拥有了第一笔应急金 · 1000元';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryTitle.textContent = '门口的信箱';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>memoryDesc.textContent = '存到 1000 元就能解锁';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 动作 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function saveMoney(amount) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.saved += amount;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.todaySpent += amount;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>store.set('saved', state.saved);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>store.set('todaySpent', state.todaySpent);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// 更新 streak</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const todayStr = new Date().toDateString();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (state.lastSaveDate !== todayStr) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.streak += 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>state.lastSaveDate = todayStr;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>store.set('streak', state.streak);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>store.set('lastSaveDate', todayStr);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function recordSpend(amount) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>state.todaySpent += amount;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>store.set('todaySpent', state.todaySpent);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 事件绑定 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('saveBtn').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>saveMoney(10);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('recordBtn').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>recordSpend(23);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 后悔药选项</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.remedy-option').forEach((el) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>el.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const type = el.dataset.remedy;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (type === 'A') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.todaySpent = Math.max(0, state.todaySpent - 41);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (type === 'B') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.saved = Math.max(0, state.saved - 41);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.streak = 0;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>store.set('streak', 0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (type === 'C') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>state.todaySpent = Math.max(0, state.todaySpent - 20);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>store.set('saved', state.saved);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>store.set('todaySpent', state.todaySpent);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 时钟 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateClock() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const now = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const h = String(now.getHours()).padStart(2, '0');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const m = String(now.getMinutes()).padStart(2, '0');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('clock').textContent = h + ':' + m;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateClock();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setInterval(updateClock, 60000);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== Service Worker 注册 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if ('serviceWorker' in navigator) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.addEventListener('load', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>navigator.serviceWorker.register('sw.js').catch((err) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>console.log('Service Worker 注册失败:', err);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ========== 通知权限 ==========</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if ('Notification' in window) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Notification.requestPermission();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 初始渲染</p>
+<p class="p1"><span class="Apple-converted-space">    </span>render();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
